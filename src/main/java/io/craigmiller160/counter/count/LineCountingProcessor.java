@@ -23,12 +23,19 @@ public class LineCountingProcessor {
         this.fileCountStorage = fileCountStorage;
         this.lineCountStorage = new LineCountStorage();
         this.includeComments = includeComments;
-        this.latch = new CountDownLatch(fileCountStorage.getTotalFileCount() - fileCountStorage.getJarFileCount());
+        this.latch = new CountDownLatch(fileCountStorage.getTotalFileCount());
     }
 
     public void execute(){
         fileCountStorage.getJavaFiles().forEach((f) -> countingExecutor.submit(new JavaLineCountingTask(f, lineCountStorage, latch, includeComments)));
         fileCountStorage.getJavaScriptFiles().forEach((f) -> countingExecutor.submit(new JavaScriptLineCountingTask(f, lineCountStorage, latch, includeComments)));
+        //XML
+        //HTML
+        //SQL
+        //Bash
+        //Props
+        //Just count down the latch for each jar file, since there aren't any lines to parse
+        fileCountStorage.getJavaFiles().forEach((f) -> latch.countDown());
 
         try{
             latch.await();
