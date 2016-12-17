@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Root>
+    <!-- Hi there,
+        this is a comment
+        -->
+    <Value>A Value</Value>
+    <Value>Another <!-- comment --> Value</Value>
+</Root>
