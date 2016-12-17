@@ -30,7 +30,7 @@ public class LineCountingProcessor {
         fileCountStorage.getJavaFiles().forEach((f) -> countingExecutor.submit(new JavaLineCountingTask(f, lineCountStorage, latch, includeComments)));
         fileCountStorage.getJavaScriptFiles().forEach((f) -> countingExecutor.submit(new JavaScriptLineCountingTask(f, lineCountStorage, latch, includeComments)));
         fileCountStorage.getXmlFiles().forEach((f) -> countingExecutor.submit(new XMLLineCountingTask(f, lineCountStorage, latch, includeComments)));
-        //HTML
+        fileCountStorage.getHtmlFiles().forEach((f) -> countingExecutor.submit(new HTMLLineCountingTask(f, lineCountStorage, latch, includeComments)));
         //SQL
         //Bash
         //Props
