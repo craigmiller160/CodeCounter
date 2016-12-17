@@ -33,7 +33,7 @@ public class LineCountingProcessor {
         fileCountStorage.getHtmlFiles().forEach((f) -> countingExecutor.submit(new HTMLLineCountingTask(f, lineCountStorage, latch, includeComments)));
         fileCountStorage.getSqlFiles().forEach((f) -> countingExecutor.submit(new SQLLineCountingTask(f, lineCountStorage, latch, includeComments)));
         fileCountStorage.getBashFiles().forEach((f) -> countingExecutor.submit(new BashLineCountingTask(f, lineCountStorage, latch, includeComments)));
-        //Props
+        fileCountStorage.getPropertiesFiles().forEach((f) -> countingExecutor.submit(new PropsLineCountingTask(f, lineCountStorage, latch, includeComments)));
         //Just count down the latch for each jar file, since there aren't any lines to parse
         fileCountStorage.getJavaFiles().forEach((f) -> latch.countDown());
 
