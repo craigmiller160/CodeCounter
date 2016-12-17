@@ -8,5 +8,7 @@ public class CommentConstants {
     public static final String C_STYLE_SINGLE_COMMENT = "//";
     public static final String C_STYLE_START_BLOCK_COMMENT = "/*";
     public static final String C_STYLE_END_BLOCK_COMMENT = "*/";
+    public static final String MARKUP_COMMENT_START = "<!--";
+    public static final String MARKUP_COMMENT_END = "-->";
 
 }

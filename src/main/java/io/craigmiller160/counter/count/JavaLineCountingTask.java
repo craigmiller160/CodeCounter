@@ -10,7 +10,7 @@ import static io.craigmiller160.counter.count.CommentConstants.*;
  */
 public class JavaLineCountingTask extends LineCountingTask {
 
-    private final CStyleBlockCommentUtil blockCommentUtil;
+    private final CommentUtil commentUtil;
 
     /*
      * Block comment rules:
@@ -27,7 +27,7 @@ public class JavaLineCountingTask extends LineCountingTask {
 
     public JavaLineCountingTask(File file, LineCountStorage storage, CountDownLatch latch, boolean includeComments) {
         super(file, storage, latch, includeComments);
-        this.blockCommentUtil = new CStyleBlockCommentUtil();
+        this.commentUtil = new BlockCommentUtil.CStyle();
     }
 
     @Override
@@ -43,7 +43,7 @@ public class JavaLineCountingTask extends LineCountingTask {
         }
 
         //If the line is not a part of a block comment, it will be accepted
-        return blockCommentUtil.acceptLine(line);
+        return commentUtil.acceptLine(line);
     }
 
     @Override

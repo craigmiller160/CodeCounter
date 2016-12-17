@@ -7,6 +7,12 @@ import javax.swing.*;
  */
 public class Counter {
 
+    /*
+     * TODO add these items
+     * - CSS
+     * - JavaScript & CSS within HTML
+     */
+
     public static void main(String[] args){
         SwingUtilities.invokeLater(Counter::new);
     }
