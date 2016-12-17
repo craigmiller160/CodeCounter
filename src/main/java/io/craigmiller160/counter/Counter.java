@@ -11,6 +11,10 @@ public class Counter {
      * TODO add these items
      * - CSS
      * - JavaScript & CSS within HTML
+     * - Better logging
+     * - Error handling with UI indicators
+     * - Progress bar while processing
+     * - Output report dialog
      */
 
     public static void main(String[] args){
