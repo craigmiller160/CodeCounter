@@ -8,7 +8,7 @@ import static io.craigmiller160.counter.count.CommentConstants.*;
 /**
  * Created by craig on 12/17/16.
  */
-public class BashLineCountingTask extends LineCountingTask {
+public class BashLineCountingTask extends DefaultLineCountingTask {
 
     public BashLineCountingTask(File file, LineCountStorage storage, CountDownLatch latch, boolean includeComments) {
         super(file, storage, latch, includeComments);

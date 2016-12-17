@@ -8,7 +8,7 @@ import static io.craigmiller160.counter.count.CommentConstants.*;
 /**
  * Created by craig on 12/17/16.
  */
-public class JavaScriptLineCountingTask extends LineCountingTask {
+public class JavaScriptLineCountingTask extends DefaultLineCountingTask {
 
     private final CommentUtil commentUtil;
 

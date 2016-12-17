@@ -6,7 +6,7 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by craig on 12/17/16.
  */
-public class CSSLineCountingTask extends LineCountingTask{
+public class CSSLineCountingTask extends DefaultLineCountingTask {
 
     private final CommentUtil commentUtil;
 

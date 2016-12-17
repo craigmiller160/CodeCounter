@@ -8,7 +8,7 @@ import static io.craigmiller160.counter.count.CommentConstants.*;
 /**
  * Created by craig on 12/17/16.
  */
-public class PropsLineCountingTask extends LineCountingTask {
+public class PropsLineCountingTask extends DefaultLineCountingTask {
 
     public PropsLineCountingTask(File file, LineCountStorage storage, CountDownLatch latch, boolean includeComments) {
         super(file, storage, latch, includeComments);
