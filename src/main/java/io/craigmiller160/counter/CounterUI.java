@@ -36,6 +36,7 @@ public class CounterUI implements DocumentListener{
     private JCheckBox htmlOption;
     private JCheckBox bashOption;
     private JCheckBox propsOption;
+    private JCheckBox cssOption;
     private JCheckBox jarsOption;
     private JButton executeButton;
 
@@ -161,13 +162,19 @@ public class CounterUI implements DocumentListener{
         propsOption.setToolTipText("Count Jar files");
         propsOption.addItemListener((e) -> fireChangeEvent(JARS_PROP, e.getStateChange() == ItemEvent.SELECTED));
 
+        cssOption = new JCheckBox("CSS");
+        cssOption.setToolTipText("Count CSS files");
+        cssOption.addItemListener((e) -> fireChangeEvent(CSS_PROP, e.getStateChange() == ItemEvent.SELECTED));
+
         configPanel.add(javaOption, "");
-        configPanel.add(javaScriptOption, "wrap");
-        configPanel.add(htmlOption, "");
-        configPanel.add(xmlOption, "wrap");
+        configPanel.add(javaScriptOption, "");
+        configPanel.add(htmlOption, "wrap");
+        configPanel.add(xmlOption, "");
         configPanel.add(sqlOption, "");
         configPanel.add(bashOption, "wrap");
         configPanel.add(propsOption, "");
+        configPanel.add(cssOption, "");
+        configPanel.add(jarsOption, "");
 
         return configPanel;
     }

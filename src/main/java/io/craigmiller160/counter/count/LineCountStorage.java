@@ -12,6 +12,7 @@ public class LineCountStorage {
     private int sqlLines;
     private int bashLines;
     private int propsLines;
+    private int cssLines;
 
     public synchronized int getJavaLines() {
         return javaLines;
@@ -69,8 +70,16 @@ public class LineCountStorage {
         this.propsLines+= propsLines;
     }
 
+    public synchronized void addCssLines(int cssLines){
+        this.cssLines+= cssLines;
+    }
+
+    public synchronized int getCssLines(){
+        return cssLines;
+    }
+
     public synchronized int getTotalLines(){
         return javaLines + javaScriptLines + xmlLines + htmlLines +
-                sqlLines + bashLines + propsLines;
+                sqlLines + bashLines + propsLines + cssLines;
     }
 }

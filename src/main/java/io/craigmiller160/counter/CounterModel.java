@@ -14,6 +14,7 @@ public class CounterModel {
     private boolean sql;
     private boolean props;
     private boolean jars;
+    private boolean css;
     private boolean includeComments;
 
     public synchronized String getPath() {
@@ -94,5 +95,13 @@ public class CounterModel {
 
     public synchronized void setIncludeComments(boolean includeComments) {
         this.includeComments = includeComments;
+    }
+
+    public synchronized boolean isCss() {
+        return css;
+    }
+
+    public synchronized void setCss(boolean css) {
+        this.css = css;
     }
 }

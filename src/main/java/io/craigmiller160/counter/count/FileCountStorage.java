@@ -17,6 +17,7 @@ public class FileCountStorage {
     private final List<File> bashFiles = new ArrayList<>();
     private final List<File> propertiesFiles = new ArrayList<>();
     private final List<File> jarFiles = new ArrayList<>();
+    private final List<File> cssFiles = new ArrayList<>();
 
     public synchronized int getJavaFileCount(){
         return javaFiles.size();
@@ -50,11 +51,16 @@ public class FileCountStorage {
         return jarFiles.size();
     }
 
+    public synchronized int getCssFileCount(){
+        return cssFiles.size();
+    }
+
     public synchronized int getTotalFileCount(){
         return javaFiles.size() + javaScriptFiles.size() +
                 xmlFiles.size() + htmlFiles.size() +
                 sqlFiles.size() + bashFiles.size() +
-                propertiesFiles.size() + jarFiles.size();
+                propertiesFiles.size() + jarFiles.size() +
+                cssFiles.size();
     }
 
     public synchronized List<File> getJavaFiles() {
@@ -119,5 +125,13 @@ public class FileCountStorage {
 
     public synchronized void addPropertiesFile(File file){
         propertiesFiles.add(file);
+    }
+
+    public List<File> getCssFiles() {
+        return cssFiles;
+    }
+
+    public synchronized void addCssFile(File file){
+        cssFiles.add(file);
     }
 }

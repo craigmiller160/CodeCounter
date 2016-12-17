@@ -24,6 +24,7 @@ public class FileCounter extends SimpleFileVisitor<Path> {
     private static final String BASH_EXT = "sh";
     private static final String PROPS_EXT = "properties";
     private static final String JAR_EXT = "jar";
+    private static final String CSS_EXT = "css";
 
     private final CounterModel model;
     private final FileCountStorage storage;
@@ -60,10 +61,13 @@ public class FileCounter extends SimpleFileVisitor<Path> {
             storage.addBashFile(file);
         }
         else if(model.isProps() && PROPS_EXT.equals(extension)){
-
+            storage.addPropertiesFile(file);
         }
         else if(model.isJars() && JAR_EXT.equals(extension)){
             storage.addJarFile(file);
+        }
+        else if(model.isCss() && CSS_EXT.equals(extension)){
+            storage.addCssFile(file);
         }
 
         return FileVisitResult.CONTINUE;
