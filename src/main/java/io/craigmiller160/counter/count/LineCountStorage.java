@@ -96,6 +96,14 @@ public class LineCountStorage {
         return cssHtmlLines;
     }
 
+    public synchronized int getTotalCssLines(){
+        return cssLines + cssHtmlLines;
+    }
+
+    public synchronized int getTotalJavaScriptLines(){
+        return javaScriptLines + jsHtmlLines;
+    }
+
     public synchronized int getTotalLines(){
         return javaLines + javaScriptLines + xmlLines + htmlLines +
                 sqlLines + bashLines + propsLines + cssLines +

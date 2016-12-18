@@ -35,8 +35,9 @@ public class LineCountingProcessor {
         fileCountStorage.getBashFiles().forEach((f) -> countingExecutor.submit(new BashLineCountingTask(f, lineCountStorage, latch, includeComments)));
         fileCountStorage.getPropertiesFiles().forEach((f) -> countingExecutor.submit(new PropsLineCountingTask(f, lineCountStorage, latch, includeComments)));
         fileCountStorage.getCssFiles().forEach((f) -> countingExecutor.submit(new CSSLineCountingTask(f, lineCountStorage, latch, includeComments)));
-        //Just count down the latch for each jar file, since there aren't any lines to parse
-        fileCountStorage.getJavaFiles().forEach((f) -> latch.countDown());
+        //Just count down the latch for each jar file and other file, since there aren't any lines to parse
+        fileCountStorage.getJarFiles().forEach((f) -> latch.countDown());
+        fileCountStorage.getOtherFiles().forEach((f) -> latch.countDown());
 
         try{
             latch.await();

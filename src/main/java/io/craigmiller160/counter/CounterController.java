@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by craig on 12/16/16.
@@ -65,36 +66,40 @@ public class CounterController implements ViewEventListener {
 
                 @Override
                 protected CountingResult doInBackground() throws Exception {
-                    try{
-                        System.out.println("Executing count operation");
-                        Path path = Paths.get(pathString);
-                        FileCounter fileCounter = FileCounter.createFileCounter(model);
-                        System.out.println("Counting files...");
-                        Files.walkFileTree(path, fileCounter);
+                    System.out.println("Executing count operation");
+                    Path path = Paths.get(pathString);
+                    FileCounter fileCounter = FileCounter.createFileCounter(model);
+                    System.out.println("Counting files...");
+                    Files.walkFileTree(path, fileCounter);
 
-                        FileCountStorage fileCountStorage = fileCounter.getFileCountStorage();
-                        System.out.println("TOTAL FILES: " + fileCountStorage.getTotalFileCount());
+                    FileCountStorage fileCountStorage = fileCounter.getFileCountStorage();
 
-                        System.out.println("Counting lines...");
-                        LineCountingProcessor lineCountingProcessor = new LineCountingProcessor(fileCountStorage, model.isIncludeComments());
-                        lineCountingProcessor.execute();
+                    System.out.println("Counting lines...");
+                    LineCountingProcessor lineCountingProcessor = new LineCountingProcessor(fileCountStorage, model.isIncludeComments());
+                    lineCountingProcessor.execute();
 
-                        LineCountStorage lineCountStorage = lineCountingProcessor.getLineCountStorage();
-                        System.out.println("TOTAL LINES: " + lineCountStorage.getTotalLines());
+                    LineCountStorage lineCountStorage = lineCountingProcessor.getLineCountStorage();
 
-                        return new CountingResult(fileCountStorage, lineCountStorage);
-                    }
-                    catch(IOException ex){
-                        //TODO need to handle the event... let it propagate to the done() method???
-                        ex.printStackTrace();
-                    }
-
-                    return null;
+                    return new CountingResult(fileCountStorage, lineCountStorage);
                 }
 
                 @Override
                 protected void done() {
-                    super.done();
+                    try{
+                        System.out.println("Count operation finished");
+                        CountingResult result = get();
+                        String report = CountReportGenerator.generateReport(pathString, result.getFileCountStorage(), result.getLineCountStorage());
+                        //TODO need a parent dialog here
+                        JOptionPane.showMessageDialog(null, report, "Code Count Report", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    catch(InterruptedException ex){
+                        //TODO handle this
+                        ex.printStackTrace();
+                    }
+                    catch(ExecutionException ex){
+                        //TODO handle this
+                        ex.printStackTrace();
+                    }
                 }
             };
 
@@ -130,6 +135,12 @@ public class CounterController implements ViewEventListener {
         }
         else if(event.getKey().equals(CSS_PROP)){
             model.setCss((Boolean) event.getValue());
+        }
+        else if(event.getKey().equals(PROPS_PROP)){
+            model.setProps((Boolean) event.getValue());
+        }
+        else if(event.getKey().equals(JARS_PROP)){
+            model.setJars((Boolean) event.getValue());
         }
         else if(event.getKey().equals(INCLUDE_COMMENT_PROP)){
             model.setIncludeComments((Boolean) event.getValue());
