@@ -8,11 +8,12 @@ public class ViewChangeEvent extends ViewEvent{
     private String key;
     private Object value;
 
-    public ViewChangeEvent(){
-        this(null, null);
+    public ViewChangeEvent(Object source){
+        this(source, null, null);
     }
 
-    public ViewChangeEvent(String key, Object value){
+    public ViewChangeEvent(Object source, String key, Object value){
+        super(source);
         this.key = key;
         this.value = value;
     }

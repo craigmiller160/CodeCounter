@@ -86,28 +86,24 @@ public class CounterController implements ViewEventListener {
                 @Override
                 protected void done() {
                     try{
+                        CounterUI view = (CounterUI) event.getSource();
                         System.out.println("Count operation finished");
                         CountingResult result = get();
                         String report = CountReportGenerator.generateReport(pathString, result.getFileCountStorage(), result.getLineCountStorage());
-                        //TODO need a parent dialog here
-                        JOptionPane.showMessageDialog(null, report, "Code Count Report", JOptionPane.INFORMATION_MESSAGE);
+                        System.out.println(report);
+                        JOptionPane.showMessageDialog(view.getWindow(), report, "Code Count Report", JOptionPane.INFORMATION_MESSAGE);
                     }
                     catch(InterruptedException ex){
-                        //TODO handle this
-                        ex.printStackTrace();
+                        Counter.handleError("Counting operation interrupted", ex);
                     }
                     catch(ExecutionException ex){
-                        //TODO handle this
-                        ex.printStackTrace();
+                        Counter.handleError("Error during counting operation", ex.getCause());
                     }
                 }
             };
 
             //TODO include a progress dialog
             worker.execute();
-
-
-
         }
     }
 

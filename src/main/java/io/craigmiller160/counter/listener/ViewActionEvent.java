@@ -7,11 +7,12 @@ public class ViewActionEvent extends ViewEvent {
 
     private String command;
 
-    public ViewActionEvent(){
-        this(null);
+    public ViewActionEvent(Object source){
+        this(source, null);
     }
 
-    public ViewActionEvent(String command){
+    public ViewActionEvent(Object source, String command){
+        super(source);
         this.command = command;
     }
 

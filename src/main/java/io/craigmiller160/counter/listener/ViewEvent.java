@@ -5,8 +5,14 @@ package io.craigmiller160.counter.listener;
  */
 public abstract class ViewEvent {
 
-    public ViewEvent(){
+    private final Object source;
 
+    public ViewEvent(Object source){
+        this.source = source;
+    }
+
+    public Object getSource(){
+        return source;
     }
 
 }

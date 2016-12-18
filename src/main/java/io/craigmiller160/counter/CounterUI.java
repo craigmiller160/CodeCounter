@@ -54,11 +54,11 @@ public class CounterUI implements DocumentListener{
     }
 
     protected void fireChangeEvent(String key, Object value){
-        listeners.forEach((l) -> l.viewEvent(new ViewChangeEvent(key, value)));
+        listeners.forEach((l) -> l.viewEvent(new ViewChangeEvent(this, key, value)));
     }
 
     protected void fireActionEvent(String command){
-        listeners.forEach((l) -> l.viewEvent(new ViewActionEvent(command)));
+        listeners.forEach((l) -> l.viewEvent(new ViewActionEvent(this, command)));
     }
 
     public JFrame getWindow(){
