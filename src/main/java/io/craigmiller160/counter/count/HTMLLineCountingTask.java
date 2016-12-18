@@ -43,6 +43,7 @@ public class HTMLLineCountingTask extends LineCountingTask {
 
     @Override
     public void run() {
+        System.out.println("Counting lines in file. Type: HTML File: " + file.getAbsolutePath());
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line = null;
             while((line = reader.readLine()) != null){

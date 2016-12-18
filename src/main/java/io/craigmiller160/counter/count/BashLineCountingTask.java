@@ -28,6 +28,11 @@ public class BashLineCountingTask extends DefaultLineCountingTask {
     }
 
     @Override
+    protected String getFileType() {
+        return "Bash";
+    }
+
+    @Override
     protected void addToStorage(int lineCount) {
         storage.addBashLines(lineCount);
     }

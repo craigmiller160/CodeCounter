@@ -17,8 +17,11 @@ public abstract class DefaultLineCountingTask extends LineCountingTask{
         super(file, storage, latch, includeComments);
     }
 
+    protected abstract String getFileType();
+
     @Override
     public void run() {
+        System.out.println("Counting lines in file. Type: " + getFileType() + " File: " + file.getAbsolutePath());
         int lineCount = 0;
         try(BufferedReader reader = new BufferedReader(new FileReader(file))){
             String line = null;

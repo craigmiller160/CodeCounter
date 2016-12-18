@@ -2,7 +2,6 @@ package io.craigmiller160.counter;
 
 import io.craigmiller160.counter.listener.ViewActionEvent;
 import io.craigmiller160.counter.listener.ViewChangeEvent;
-import io.craigmiller160.counter.listener.ViewEvent;
 import io.craigmiller160.counter.listener.ViewEventListener;
 import net.miginfocom.swing.MigLayout;
 
@@ -60,6 +59,10 @@ public class CounterUI implements DocumentListener{
 
     protected void fireActionEvent(String command){
         listeners.forEach((l) -> l.viewEvent(new ViewActionEvent(command)));
+    }
+
+    public JFrame getWindow(){
+        return window;
     }
 
     private void init(){
@@ -221,7 +224,7 @@ public class CounterUI implements DocumentListener{
             fireChangeEvent(PATH_PROP, text);
         }
         catch(BadLocationException ex){
-            ex.printStackTrace();
+            Counter.handleError("Failed to update path property.", ex);
         }
     }
 

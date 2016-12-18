@@ -47,6 +47,11 @@ public class JavaLineCountingTask extends DefaultLineCountingTask {
     }
 
     @Override
+    protected String getFileType() {
+        return "Java";
+    }
+
+    @Override
     protected void addToStorage(int lineCount) {
         storage.addJavaLines(lineCount);
     }

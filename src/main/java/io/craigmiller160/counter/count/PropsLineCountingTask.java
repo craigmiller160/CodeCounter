@@ -28,6 +28,11 @@ public class PropsLineCountingTask extends DefaultLineCountingTask {
     }
 
     @Override
+    protected String getFileType() {
+        return "Properties";
+    }
+
+    @Override
     protected void addToStorage(int lineCount) {
         storage.addPropsLines(lineCount);
     }

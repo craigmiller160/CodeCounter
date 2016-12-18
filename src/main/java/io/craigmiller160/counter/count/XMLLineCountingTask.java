@@ -27,6 +27,11 @@ public class XMLLineCountingTask extends DefaultLineCountingTask{
     }
 
     @Override
+    protected String getFileType() {
+        return "XML";
+    }
+
+    @Override
     protected void addToStorage(int lineCount) {
         storage.addXmlLines(lineCount);
     }

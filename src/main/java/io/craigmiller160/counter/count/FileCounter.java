@@ -41,33 +41,38 @@ public class FileCounter extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
         File file = path.toFile();
-        String extension = FilenameUtils.getExtension(file.getName());
-        if(model.isJava() && JAVA_EXT.equals(extension)){
-            storage.addJavaFile(file);
-        }
-        else if(model.isJavaScript() && JAVASCRIPT_EXT.equals(extension)){
-            storage.addJavaScriptFile(file);
-        }
-        else if(model.isXml() && XML_EXT.equals(extension)){
-            storage.addXmlFile(file);
-        }
-        else if(model.isHtml() && (HTM_EXT.equals(extension) || HTML_EXT.equals(extension))){
-            storage.addHtmlFile(file);
-        }
-        else if(model.isSql() && SQL_EXT.equals(extension)){
-            storage.addSqlFile(file);
-        }
-        else if(model.isBash() && BASH_EXT.equals(extension)){
-            storage.addBashFile(file);
-        }
-        else if(model.isProps() && PROPS_EXT.equals(extension)){
-            storage.addPropertiesFile(file);
-        }
-        else if(model.isJars() && JAR_EXT.equals(extension)){
-            storage.addJarFile(file);
-        }
-        else if(model.isCss() && CSS_EXT.equals(extension)){
-            storage.addCssFile(file);
+        if(file.isFile()){
+            String extension = FilenameUtils.getExtension(file.getName());
+            if(model.isJava() && JAVA_EXT.equals(extension)){
+                storage.addJavaFile(file);
+            }
+            else if(model.isJavaScript() && JAVASCRIPT_EXT.equals(extension)){
+                storage.addJavaScriptFile(file);
+            }
+            else if(model.isXml() && XML_EXT.equals(extension)){
+                storage.addXmlFile(file);
+            }
+            else if(model.isHtml() && (HTM_EXT.equals(extension) || HTML_EXT.equals(extension))){
+                storage.addHtmlFile(file);
+            }
+            else if(model.isSql() && SQL_EXT.equals(extension)){
+                storage.addSqlFile(file);
+            }
+            else if(model.isBash() && BASH_EXT.equals(extension)){
+                storage.addBashFile(file);
+            }
+            else if(model.isProps() && PROPS_EXT.equals(extension)){
+                storage.addPropertiesFile(file);
+            }
+            else if(model.isJars() && JAR_EXT.equals(extension)){
+                storage.addJarFile(file);
+            }
+            else if(model.isCss() && CSS_EXT.equals(extension)){
+                storage.addCssFile(file);
+            }
+            else{
+                storage.addOtherFile(file);
+            }
         }
 
         return FileVisitResult.CONTINUE;

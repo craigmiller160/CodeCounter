@@ -31,6 +31,11 @@ public class SQLLineCountingTask extends DefaultLineCountingTask {
     }
 
     @Override
+    protected String getFileType() {
+        return "SQL";
+    }
+
+    @Override
     protected void addToStorage(int lineCount) {
         storage.addSqlLines(lineCount);
     }

@@ -25,6 +25,11 @@ public class CSSLineCountingTask extends DefaultLineCountingTask {
     }
 
     @Override
+    protected String getFileType() {
+        return "CSS";
+    }
+
+    @Override
     protected void addToStorage(int lineCount) {
         storage.addCssLines(lineCount);
     }

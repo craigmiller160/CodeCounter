@@ -34,6 +34,11 @@ public class JavaScriptLineCountingTask extends DefaultLineCountingTask {
     }
 
     @Override
+    protected String getFileType() {
+        return "JavaScript";
+    }
+
+    @Override
     protected void addToStorage(int lineCount) {
         storage.addJavaScriptLines(lineCount);
     }

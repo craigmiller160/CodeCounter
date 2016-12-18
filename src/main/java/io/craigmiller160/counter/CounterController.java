@@ -57,7 +57,7 @@ public class CounterController implements ViewEventListener {
         if(event.getCommand().equals(EXECUTE_ACTION)){
             final String pathString = model.getPath();
             if(StringUtils.isEmpty(pathString)){
-                System.err.println("CANNOT EXECUTE WITHOUT PATH");
+                Counter.handleError("Cannot execute without path", null);
                 return;
             }
 
@@ -66,22 +66,26 @@ public class CounterController implements ViewEventListener {
                 @Override
                 protected CountingResult doInBackground() throws Exception {
                     try{
+                        System.out.println("Executing count operation");
                         Path path = Paths.get(pathString);
                         FileCounter fileCounter = FileCounter.createFileCounter(model);
+                        System.out.println("Counting files...");
                         Files.walkFileTree(path, fileCounter);
 
                         FileCountStorage fileCountStorage = fileCounter.getFileCountStorage();
                         System.out.println("TOTAL FILES: " + fileCountStorage.getTotalFileCount());
 
+                        System.out.println("Counting lines...");
                         LineCountingProcessor lineCountingProcessor = new LineCountingProcessor(fileCountStorage, model.isIncludeComments());
                         lineCountingProcessor.execute();
 
                         LineCountStorage lineCountStorage = lineCountingProcessor.getLineCountStorage();
                         System.out.println("TOTAL LINES: " + lineCountStorage.getTotalLines());
 
-                        return new CountingResult(fileCountStorage, lineCountStorage); //TODO finish this with the line count storage
+                        return new CountingResult(fileCountStorage, lineCountStorage);
                     }
                     catch(IOException ex){
+                        //TODO need to handle the event... let it propagate to the done() method???
                         ex.printStackTrace();
                     }
 
