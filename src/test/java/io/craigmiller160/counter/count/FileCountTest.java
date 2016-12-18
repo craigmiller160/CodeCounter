@@ -39,12 +39,12 @@ public class FileCountTest {
         File f = new File(pathString);
         int actualSize = f.listFiles().length;
 
-        assertEquals("Wrong actual file count for samples directory", 9, actualSize);
-        assertEquals("Wrong total file count", 9, storage.getTotalFileCount());
+        assertEquals("Wrong actual file count for samples directory", 10, actualSize);
+        assertEquals("Wrong total file count", 10, storage.getTotalFileCount());
         assertEquals("Wrong java file count", 1, storage.getJavaFileCount());
         assertEquals("Wrong javascript file count", 1, storage.getJavaScriptFileCount());
         assertEquals("Wrong xml file count", 1, storage.getXmlFileCount());
-        assertEquals("Wrong html file count", 1, storage.getHtmlFileCount());
+        assertEquals("Wrong html file count", 2, storage.getHtmlFileCount());
         assertEquals("Wrong bash file count", 1, storage.getBashFileCount());
         assertEquals("Wrong sql file count", 1, storage.getSqlFileCount());
         assertEquals("Wrong props file count", 1, storage.getPropertiesFileCount());

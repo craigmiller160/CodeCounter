@@ -9,7 +9,6 @@ public class Counter {
 
     /*
      * TODO add these items
-     * - JavaScript & CSS within HTML
      * - Better logging
      * - Error handling with UI indicators
      * - Progress bar while processing

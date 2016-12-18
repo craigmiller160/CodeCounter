@@ -16,7 +16,6 @@ public class TestJavaScriptCount {
     @Test
     public void testJavaScriptCount(){
         String path = TestConstants.TEST_SRC_ROOT + "/io/craigmiller160/counter/samples/JavaScriptTest.js";
-        System.out.println(path);
         LineCountStorage noCommentsStorage = new LineCountStorage();
         LineCountStorage withCommentsStorage = new LineCountStorage();
         JavaScriptLineCountingTask noCommentsTask = new JavaScriptLineCountingTask(new File(path), noCommentsStorage, new CountDownLatch(1), false);

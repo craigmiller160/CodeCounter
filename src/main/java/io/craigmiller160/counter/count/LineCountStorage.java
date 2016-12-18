@@ -13,6 +13,8 @@ public class LineCountStorage {
     private int bashLines;
     private int propsLines;
     private int cssLines;
+    private int jsHtmlLines;
+    private int cssHtmlLines;
 
     public synchronized int getJavaLines() {
         return javaLines;
@@ -78,8 +80,25 @@ public class LineCountStorage {
         return cssLines;
     }
 
+    public synchronized void addJsHtmlLines(int jsHtmlLines){
+        this.jsHtmlLines+= jsHtmlLines;
+    }
+
+    public synchronized int getJsHtmlLines(){
+        return jsHtmlLines;
+    }
+
+    public synchronized void addCssHtmlLines(int cssHtmlLines){
+        this.cssHtmlLines+= cssHtmlLines;
+    }
+
+    public synchronized int getCssHtmlLines(){
+        return cssHtmlLines;
+    }
+
     public synchronized int getTotalLines(){
         return javaLines + javaScriptLines + xmlLines + htmlLines +
-                sqlLines + bashLines + propsLines + cssLines;
+                sqlLines + bashLines + propsLines + cssLines +
+                jsHtmlLines + cssHtmlLines;
     }
 }
