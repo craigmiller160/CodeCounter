@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -56,6 +57,7 @@ public class CounterController implements ViewEventListener {
 
     private void handleActionEvent(ViewActionEvent event){
         if(event.getCommand().equals(EXECUTE_ACTION)){
+            final CounterUI view = (CounterUI) event.getSource();
             final String pathString = model.getPath();
             if(StringUtils.isEmpty(pathString)){
                 Counter.handleError("Cannot execute without path", null);
@@ -86,7 +88,6 @@ public class CounterController implements ViewEventListener {
                 @Override
                 protected void done() {
                     try{
-                        CounterUI view = (CounterUI) event.getSource();
                         System.out.println("Count operation finished");
                         CountingResult result = get();
                         String report = CountReportGenerator.generateReport(pathString, result.getFileCountStorage(), result.getLineCountStorage());
@@ -101,6 +102,12 @@ public class CounterController implements ViewEventListener {
                     }
                 }
             };
+
+            worker.addPropertyChangeListener((e) -> {
+                if("state".equals(e.getPropertyName()) && SwingWorker.StateValue.DONE == e.getNewValue()) {
+                    //TODO dismiss dialog
+                }
+            });
 
             //TODO include a progress dialog
             worker.execute();
