@@ -28,15 +28,15 @@ public class CounterUI implements DocumentListener{
     private JFrame window;
     private JTextField pathField;
     private JButton pathChooserButton;
-    private JCheckBox javaOption;
-    private JCheckBox javaScriptOption;
-    private JCheckBox sqlOption;
-    private JCheckBox xmlOption;
-    private JCheckBox htmlOption;
-    private JCheckBox bashOption;
-    private JCheckBox propsOption;
-    private JCheckBox cssOption;
-    private JCheckBox jarsOption;
+    private JLabel javaOption;
+    private JLabel javaScriptOption;
+    private JLabel sqlOption;
+    private JLabel xmlOption;
+    private JLabel htmlOption;
+    private JLabel bashOption;
+    private JLabel propsOption;
+    private JLabel cssOption;
+    private JLabel jarsOption;
     private JButton executeButton;
 
     private JCheckBox includeComments;
@@ -128,46 +128,28 @@ public class CounterUI implements DocumentListener{
         configPanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder(
                         BorderFactory.createLineBorder(Color.GRAY, 1),
-                        "Configuration"
+                        "Supported Languages"
                 ),
                 BorderFactory.createEmptyBorder(2,2,2,2)
         ));
 
-        javaOption = new JCheckBox("Java");
-        javaOption.setToolTipText("Count Java files");
-        javaOption.addItemListener((e) -> fireChangeEvent(JAVA_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        javaOption = new JLabel("Java");
 
-        javaScriptOption = new JCheckBox("JavaScript");
-        javaScriptOption.setToolTipText("Count JavaScript files");
-        javaScriptOption.addItemListener((e) -> fireChangeEvent(JAVA_SCRIPT_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        javaScriptOption = new JLabel("JavaScript");
 
-        sqlOption = new JCheckBox("SQL");
-        sqlOption.setToolTipText("Count SQL files");
-        sqlOption.addItemListener((e) -> fireChangeEvent(SQL_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        sqlOption = new JLabel("SQL");
 
-        xmlOption = new JCheckBox("XML");
-        xmlOption.setToolTipText("Count XML files");
-        xmlOption.addItemListener((e) -> fireChangeEvent(XML_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        xmlOption = new JLabel("XML");
 
-        htmlOption = new JCheckBox("HTML");
-        htmlOption.setToolTipText("Count HTML files");
-        htmlOption.addItemListener((e) -> fireChangeEvent(HTML_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        htmlOption = new JLabel("HTML");
 
-        bashOption = new JCheckBox("Bash");
-        bashOption.setToolTipText("Count Bash files");
-        bashOption.addItemListener((e) -> fireChangeEvent(BASH_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        bashOption = new JLabel("Bash");
 
-        propsOption = new JCheckBox("Properties");
-        propsOption.setToolTipText("Count Properties files");
-        propsOption.addItemListener((e) -> fireChangeEvent(PROPS_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        propsOption = new JLabel("Properties");
 
-        jarsOption = new JCheckBox("Jars");
-        propsOption.setToolTipText("Count Jar files");
-        propsOption.addItemListener((e) -> fireChangeEvent(JARS_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        jarsOption = new JLabel("Jars");
 
-        cssOption = new JCheckBox("CSS");
-        cssOption.setToolTipText("Count CSS files");
-        cssOption.addItemListener((e) -> fireChangeEvent(CSS_PROP, e.getStateChange() == ItemEvent.SELECTED));
+        cssOption = new JLabel("CSS");
 
         configPanel.add(javaOption, "");
         configPanel.add(javaScriptOption, "");

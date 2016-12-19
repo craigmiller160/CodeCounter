@@ -20,15 +20,6 @@ public class FileCountTest {
     public void testCount() throws Exception{
         String pathString = TestConstants.TEST_SRC_ROOT + "/io/craigmiller160/counter/samples";
         CounterModel model = new CounterModel();
-        model.setJava(true);
-        model.setJavaScript(true);
-        model.setXml(true);
-        model.setHtml(true);
-        model.setBash(true);
-        model.setSql(true);
-        model.setProps(true);
-        model.setJars(true);
-        model.setCss(true);
 
         Path path = Paths.get(pathString);
         FileCounter fileCounter  = FileCounter.createFileCounter(model);

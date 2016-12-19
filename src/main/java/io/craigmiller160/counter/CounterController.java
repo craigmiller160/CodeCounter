@@ -26,15 +26,6 @@ import java.util.concurrent.ExecutionException;
 public class CounterController implements ViewEventListener {
 
     public static final String PATH_PROP = "Path";
-    public static final String JAVA_PROP = "Java";
-    public static final String JAVA_SCRIPT_PROP = "JavaScript";
-    public static final String XML_PROP = "Xml";
-    public static final String HTML_PROP = "Html";
-    public static final String BASH_PROP = "Bash";
-    public static final String SQL_PROP = "SQL";
-    public static final String PROPS_PROP = "Properties";
-    public static final String JARS_PROP = "Jars";
-    public static final String CSS_PROP = "CSS";
     public static final String EXECUTE_ACTION = "Execute";
 
     public static final String INCLUDE_COMMENT_PROP = "IncludeComment";
@@ -117,33 +108,6 @@ public class CounterController implements ViewEventListener {
     private void handleChangeEvent(ViewChangeEvent event){
         if(event.getKey().equals(PATH_PROP)){
             model.setPath((String) event.getValue());
-        }
-        else if(event.getKey().equals(JAVA_PROP)){
-            model.setJava((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(JAVA_SCRIPT_PROP)){
-            model.setJavaScript((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(XML_PROP)){
-            model.setXml((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(HTML_PROP)){
-            model.setHtml((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(BASH_PROP)){
-            model.setBash((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(SQL_PROP)){
-            model.setSql((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(CSS_PROP)){
-            model.setCss((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(PROPS_PROP)){
-            model.setProps((Boolean) event.getValue());
-        }
-        else if(event.getKey().equals(JARS_PROP)){
-            model.setJars((Boolean) event.getValue());
         }
         else if(event.getKey().equals(INCLUDE_COMMENT_PROP)){
             model.setIncludeComments((Boolean) event.getValue());
