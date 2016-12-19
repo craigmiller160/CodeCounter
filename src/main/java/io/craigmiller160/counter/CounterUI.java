@@ -82,11 +82,14 @@ public class CounterUI implements DocumentListener{
         title.setFont(new Font("serif", Font.BOLD, 16));
         title.setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 
+        JPanel controlPanel = new JPanel(new MigLayout());
+        controlPanel.add(buildPathPanel(), "dock north");
+        controlPanel.add(buildLanguagesPanel(), "dock center");
+        controlPanel.add(buildOptionsPanel(), "dock south");
+
         window.getContentPane().add(title, "dock north");
-        window.getContentPane().add(buildPathPanel(), "dock north");
-        window.getContentPane().add(buildConfigPanel(), "dock center");
-        window.getContentPane().add(executeButton, "dock south"); //Ends up on bottom because it's called first
-        window.getContentPane().add(buildOptionsPanel(), "dock south");
+        window.getContentPane().add(controlPanel, "dock center");
+        window.getContentPane().add(executeButton, "dock south");
 
         window.pack();
         window.setLocationRelativeTo(null);
@@ -122,10 +125,10 @@ public class CounterUI implements DocumentListener{
         return pathPanel;
     }
 
-    private JPanel buildConfigPanel(){
-        JPanel configPanel = new JPanel(new MigLayout());
+    private JPanel buildLanguagesPanel(){
+        JPanel languagePanel = new JPanel(new MigLayout());
 
-        configPanel.setBorder(BorderFactory.createCompoundBorder(
+        languagePanel.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createTitledBorder(
                         BorderFactory.createLineBorder(Color.GRAY, 1),
                         "Supported Languages"
@@ -151,17 +154,17 @@ public class CounterUI implements DocumentListener{
 
         cssOption = new JLabel("CSS");
 
-        configPanel.add(javaOption, "");
-        configPanel.add(javaScriptOption, "");
-        configPanel.add(htmlOption, "wrap");
-        configPanel.add(xmlOption, "");
-        configPanel.add(sqlOption, "");
-        configPanel.add(bashOption, "wrap");
-        configPanel.add(propsOption, "");
-        configPanel.add(cssOption, "");
-        configPanel.add(jarsOption, "");
+        languagePanel.add(javaOption, "");
+        languagePanel.add(javaScriptOption, "");
+        languagePanel.add(htmlOption, "wrap");
+        languagePanel.add(xmlOption, "");
+        languagePanel.add(sqlOption, "");
+        languagePanel.add(bashOption, "wrap");
+        languagePanel.add(propsOption, "");
+        languagePanel.add(cssOption, "");
+        languagePanel.add(jarsOption, "");
 
-        return configPanel;
+        return languagePanel;
     }
 
     private JPanel buildOptionsPanel(){
