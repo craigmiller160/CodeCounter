@@ -9,14 +9,6 @@ import java.util.Optional;
  */
 public class Counter {
 
-    /*
-     * TODO add these items
-     * - Better logging
-     * - Error handling with UI indicators
-     * - Progress bar while processing
-     * - Output report dialog
-     */
-
     public static void main(String[] args){
         Thread.setDefaultUncaughtExceptionHandler((t,e) -> handleError("Uncaught Exception!", e));
         SwingUtilities.invokeLater(Counter::new);
