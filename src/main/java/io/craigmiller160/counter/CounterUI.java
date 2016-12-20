@@ -54,7 +54,7 @@ public class CounterUI extends AbstractView implements DocumentListener{
     private void init(){
         window = new JFrame("Code Counter");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setContentPane(new JPanel(new MigLayout()));
+        window.setContentPane(new JPanel(new MigLayout("fill")));
 
         ((JPanel) window.getContentPane()).setBorder(BorderFactory.createEmptyBorder(2,2,2,2));
 
@@ -75,13 +75,13 @@ public class CounterUI extends AbstractView implements DocumentListener{
         controlPanel.add(buildLanguagesPanel(), "dock center");
         controlPanel.add(buildOptionsPanel(), "dock south");
 
-        JPanel bottomPanel = new JPanel(new MigLayout());
-        bottomPanel.add(executeButton, "dock north");
-        bottomPanel.add(progressBar, "dock south");
+        JPanel bottomPanel = new JPanel(new MigLayout("fill"));
+        bottomPanel.add(executeButton, "dock north, growx");
+        bottomPanel.add(progressBar, "dock south, growx");
 
         window.getContentPane().add(title, "dock north");
         window.getContentPane().add(controlPanel, "dock center");
-        window.getContentPane().add(bottomPanel, "dock south");
+        window.getContentPane().add(bottomPanel, "dock south, growx");
 
         window.pack();
         window.setLocationRelativeTo(null);

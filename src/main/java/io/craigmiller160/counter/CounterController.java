@@ -85,7 +85,11 @@ public class CounterController implements ViewEventListener {
                         CountingResult result = get();
                         String report = CountReportGenerator.generateReport(pathString, result.getFileCountStorage(), result.getLineCountStorage());
                         System.out.println(report);
-                        JOptionPane.showMessageDialog(view.getWindow(), report, "Code Count Report", JOptionPane.INFORMATION_MESSAGE);
+
+                        CounterReportPanel reportPanel = new CounterReportPanel();
+                        reportPanel.setReport(report);
+
+                        JOptionPane.showMessageDialog(view.getWindow(), reportPanel.getPanel(), "Code Count Report", JOptionPane.INFORMATION_MESSAGE);
                     }
                     catch(InterruptedException ex){
                         Counter.handleError("Counting operation interrupted", ex);

@@ -25,7 +25,7 @@ public class CounterReportPanel extends AbstractView {
     }
 
     private void init(){
-        panel.setLayout(new MigLayout());
+        panel = new JPanel(new MigLayout());
 
         reportLabel = new JLabel();
 
@@ -38,7 +38,10 @@ public class CounterReportPanel extends AbstractView {
     }
 
     public void setReport(String report){
-        this.reportLabel.setText(report);
+        report = report.replace("\r\n", "<br/>");
+        report = report.replace("\n","<br/>");
+
+        this.reportLabel.setText("<html><body><p>" + report + "</p></body></html>");
     }
 
     private void saveReport(){

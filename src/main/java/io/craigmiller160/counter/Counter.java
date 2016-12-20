@@ -70,7 +70,12 @@ public class Counter {
         if(ex != null){
             message = message + "[" + ex.getMessage() + "]";
         }
-        JOptionPane.showMessageDialog(view.getWindow(), message, "Error", JOptionPane.ERROR_MESSAGE);
+        if(view != null){
+            JOptionPane.showMessageDialog(view.getWindow(), message, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            JOptionPane.showMessageDialog(null, message, "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
 }
