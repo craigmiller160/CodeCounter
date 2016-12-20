@@ -41,6 +41,8 @@ public class CounterUI implements DocumentListener{
 
     private JCheckBox includeComments;
 
+    private JProgressBar progressBar;
+
     public CounterUI(){
         init();
     }
@@ -76,6 +78,8 @@ public class CounterUI implements DocumentListener{
         executeButton.setToolTipText("Execute the code counting.");
         executeButton.addActionListener((e) -> fireActionEvent(EXECUTE_ACTION));
 
+        progressBar = new JProgressBar(0,100);
+
         JLabel title = new JLabel("Code Counter");
         title.setAlignmentX(JLabel.CENTER);
         title.setHorizontalAlignment(JLabel.CENTER);
@@ -87,9 +91,13 @@ public class CounterUI implements DocumentListener{
         controlPanel.add(buildLanguagesPanel(), "dock center");
         controlPanel.add(buildOptionsPanel(), "dock south");
 
+        JPanel bottomPanel = new JPanel(new MigLayout());
+        bottomPanel.add(executeButton, "dock north");
+        bottomPanel.add(progressBar, "dock south");
+
         window.getContentPane().add(title, "dock north");
         window.getContentPane().add(controlPanel, "dock center");
-        window.getContentPane().add(executeButton, "dock south");
+        window.getContentPane().add(bottomPanel, "dock south");
 
         window.pack();
         window.setLocationRelativeTo(null);
@@ -123,6 +131,14 @@ public class CounterUI implements DocumentListener{
         pathPanel.add(pathChooserButton);
 
         return pathPanel;
+    }
+
+    public void startProgressBar(){
+        progressBar.setIndeterminate(true);
+    }
+
+    public void stopProgressBar(){
+        progressBar.setIndeterminate(false);
     }
 
     private JPanel buildLanguagesPanel(){

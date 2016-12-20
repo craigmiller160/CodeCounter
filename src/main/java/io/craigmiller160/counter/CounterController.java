@@ -96,11 +96,11 @@ public class CounterController implements ViewEventListener {
 
             worker.addPropertyChangeListener((e) -> {
                 if("state".equals(e.getPropertyName()) && SwingWorker.StateValue.DONE == e.getNewValue()) {
-                    //TODO dismiss dialog
+                    view.stopProgressBar();
                 }
             });
 
-            //TODO include a progress dialog
+            view.startProgressBar();
             worker.execute();
         }
     }
