@@ -19,9 +19,9 @@ import static io.craigmiller160.counter.CounterController.*;
 /**
  * Created by craig on 12/16/16.
  */
-public class CounterUI implements DocumentListener{
+public class CounterUI extends AbstractView implements DocumentListener{
 
-    private final java.util.List<ViewEventListener> listeners = new ArrayList<>();
+
 
     private File lastLocation;
 
@@ -45,22 +45,6 @@ public class CounterUI implements DocumentListener{
 
     public CounterUI(){
         init();
-    }
-
-    public void addListener(ViewEventListener listener){
-        this.listeners.add(listener);
-    }
-
-    public void removeListener(ViewEventListener listener){
-        this.listeners.remove(listener);
-    }
-
-    protected void fireChangeEvent(String key, Object value){
-        listeners.forEach((l) -> l.viewEvent(new ViewChangeEvent(this, key, value)));
-    }
-
-    protected void fireActionEvent(String command){
-        listeners.forEach((l) -> l.viewEvent(new ViewActionEvent(this, command)));
     }
 
     public JFrame getWindow(){

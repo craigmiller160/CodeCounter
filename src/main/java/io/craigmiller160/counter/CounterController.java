@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import javax.swing.*;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -27,6 +28,7 @@ public class CounterController implements ViewEventListener {
 
     public static final String PATH_PROP = "Path";
     public static final String EXECUTE_ACTION = "Execute";
+    public static final String SAVE_ACTION = "Save";
 
     public static final String INCLUDE_COMMENT_PROP = "IncludeComment";
 
@@ -103,6 +105,10 @@ public class CounterController implements ViewEventListener {
             view.startProgressBar();
             worker.execute();
         }
+        else if(event.getCommand().equals(SAVE_ACTION)){
+            Object[] data = (Object[]) event.getData();
+            saveReport((File) data[0], (String) data[1]);
+        }
     }
 
     private void handleChangeEvent(ViewChangeEvent event){
@@ -112,6 +118,19 @@ public class CounterController implements ViewEventListener {
         else if(event.getKey().equals(INCLUDE_COMMENT_PROP)){
             model.setIncludeComments((Boolean) event.getValue());
         }
+    }
+
+    private void saveReport(final File file, final String report){
+        Thread t = new Thread(() -> {
+            System.out.println("Saving report. File: " + file.getAbsolutePath());
+            try(FileWriter writer = new FileWriter(file)){
+                writer.write(report);
+            }
+            catch(IOException ex){
+                Counter.handleError("Unable to save report. File: " + file.getAbsolutePath(), ex);
+            }
+        });
+        t.start();
     }
 
 }
