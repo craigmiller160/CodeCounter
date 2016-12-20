@@ -2,3 +2,7 @@
 .idea/
 /out
 *.iml
+
+# Build files
+/build/staging
+/build/artifact
