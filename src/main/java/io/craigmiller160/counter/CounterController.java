@@ -81,12 +81,14 @@ public class CounterController implements ViewEventListener {
                 @Override
                 protected void done() {
                     try{
+                        firePropertyChange("done", null, true);
                         System.out.println("Count operation finished");
                         CountingResult result = get();
                         String report = CountReportGenerator.generateReport(pathString, result.getFileCountStorage(), result.getLineCountStorage());
                         System.out.println(report);
 
                         CounterReportPanel reportPanel = new CounterReportPanel();
+                        reportPanel.addListener(CounterController.this);
                         reportPanel.setReport(report);
 
                         JOptionPane.showMessageDialog(view.getWindow(), reportPanel.getPanel(), "Code Count Report", JOptionPane.INFORMATION_MESSAGE);
@@ -101,7 +103,7 @@ public class CounterController implements ViewEventListener {
             };
 
             worker.addPropertyChangeListener((e) -> {
-                if("state".equals(e.getPropertyName()) && SwingWorker.StateValue.DONE == e.getNewValue()) {
+                if("done".equals(e.getPropertyName())) {
                     view.stopProgressBar();
                 }
             });

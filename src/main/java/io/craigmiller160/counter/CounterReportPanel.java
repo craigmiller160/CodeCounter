@@ -15,12 +15,17 @@ public class CounterReportPanel extends AbstractView {
     private JPanel panel;
     private JLabel reportLabel;
     private JButton saveButton;
+    private String report;
 
     public CounterReportPanel(){
         init();
     }
 
     public JPanel getPanel(){
+        String labelText = report.replace("\r\n", "<br/>");
+        labelText = labelText.replace("\n","<br/>");
+
+        reportLabel.setText("<html><body><p>" + labelText + "</p></body></html>");
         return panel;
     }
 
@@ -38,10 +43,7 @@ public class CounterReportPanel extends AbstractView {
     }
 
     public void setReport(String report){
-        report = report.replace("\r\n", "<br/>");
-        report = report.replace("\n","<br/>");
-
-        this.reportLabel.setText("<html><body><p>" + report + "</p></body></html>");
+        this.report = report;
     }
 
     private void saveReport(){
@@ -52,7 +54,7 @@ public class CounterReportPanel extends AbstractView {
         int result = fileChooser.showSaveDialog(panel.getTopLevelAncestor());
         if(result == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
-            fireActionEvent(SAVE_ACTION, new Object[] {file, reportLabel.getText()});
+            fireActionEvent(SAVE_ACTION, new Object[] {file, report});
         }
     }
 
