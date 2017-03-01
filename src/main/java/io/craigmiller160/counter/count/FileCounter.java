@@ -41,7 +41,7 @@ public class FileCounter extends SimpleFileVisitor<Path> {
     @Override
     public FileVisitResult visitFile(Path path, BasicFileAttributes attrs) throws IOException {
         File file = path.toFile();
-        if(file.isFile()){
+        if(file.isFile() && !file.isHidden()){
             String extension = FilenameUtils.getExtension(file.getName());
             if(JAVA_EXT.equals(extension)){
                 storage.addJavaFile(file);
@@ -71,11 +71,21 @@ public class FileCounter extends SimpleFileVisitor<Path> {
                 storage.addCssFile(file);
             }
             else{
+                System.out.println("OTHER: " + file); //TODO delete this
                 storage.addOtherFile(file);
             }
         }
 
         return FileVisitResult.CONTINUE;
+    }
+
+    @Override
+    public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) throws IOException {
+        File dirFile = dir.toFile();
+        if(!dirFile.isHidden()){
+            return FileVisitResult.CONTINUE;
+        }
+        return FileVisitResult.SKIP_SUBTREE;
     }
 
     public FileCountStorage getFileCountStorage(){

@@ -6,3 +6,6 @@
 # Build files
 /build/staging
 /build/artifact
+
+# Mac files
+.DS_Store
