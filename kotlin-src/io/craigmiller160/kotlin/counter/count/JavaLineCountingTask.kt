@@ -10,9 +10,7 @@ class JavaLineCountingTask(file: File, storage: LineCountStorage, latch: CountDo
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getFileType(): String {
-        return "Java"
-    }
+    override val fileType = "Java"
 
     override fun addToStorage(lineCount: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.

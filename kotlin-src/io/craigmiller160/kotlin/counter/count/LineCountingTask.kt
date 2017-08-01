@@ -8,10 +8,10 @@ abstract class LineCountingTask(val file: File, val storage: LineCountStorage, v
 abstract class DefaultLineCountingTask(file: File, storage: LineCountStorage, latch: CountDownLatch, includeComments: Boolean) : LineCountingTask(file, storage, latch, includeComments){
 
     //TODO any way to make this an abstract property???
-    abstract fun getFileType(): String
+    abstract val fileType: String
 
     override fun run() {
-        println("Counting lines in file. Type: ${getFileType()} File: ${file.absolutePath}")
+        println("Counting lines in file. Type: $fileType File: ${file.absolutePath}")
 
         var lineCount = 0
         file.bufferedReader().useLines { lines ->
